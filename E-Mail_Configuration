@@ -3,7 +3,7 @@ Email Extension Template
 Email Extension
 Mailer Plugin
 
-Go to Gmail --> App passwords --> others (custom name) --> Jenkins --> Generate (copy the E-mail notification password) (save some where)
+Go to Gmail --> Security --> 2-Step Verification --> App passwords --> others (custom name) --> Jenkins --> Generate (copy the E-mail notification password) (save some where)
 
 ------------------------ E-mail Notification --------------------------------------
 
@@ -11,7 +11,7 @@ SMTP server : smtp.gmail.com
 
 Use SMTP Authentication :
 User Name : ynareshbabu1991@gmail.com
-Password : llwbmymqnsnfqndl
+Password : xcgi fguy nbvr asqv
 
 Use SSL : check
 Test configuration by sending test e-mail : ynareshbabu1991@gmail.com

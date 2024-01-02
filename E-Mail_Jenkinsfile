@@ -26,27 +26,28 @@ pipeline {
             }
         }
         
-         stage("Test Cases"){
+        stage("Test Cases"){
             steps{
                 sh "mvn test"
             }
         }
 
-         stage("Build"){
+        stage("Build"){
             steps{
                 sh " mvn clean install"
             }
+            post {
+                always {
+                    emailext attachLog: true,
+                    subject: "'${currentBuild.result}'",
+                    body: "Project: ${env.JOB_NAME}<br/>" +
+                    "Build Number: ${env.BUILD_NUMBER}<br/>" +
+                    "URL: ${env.BUILD_URL}<br/>",
+                    to: 'ynareshbabu1991@gmail.com',
+                    attachmentsPattern: 'trivy.txt'
+                }
+            }
         }
     }
-    post{
-      success{
-        emailext attachLog: true, body: 'Email sent out from Jenkins', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'ynareshbabu1992@gmail.com'
-      }
-      failure{
-        emailext attachLog: true, body: 'Email sent out from Jenkins', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'ynareshbabu1992@gmail.com'
-      }
-    }
+
 }
-
-
-

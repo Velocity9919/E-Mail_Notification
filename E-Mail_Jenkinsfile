@@ -26,12 +26,17 @@ pipeline {
             }
         }
         
+<<<<<<< HEAD
          stage("Test Cases"){
+=======
+        stage("Test Cases"){
+>>>>>>> 3360d519aa8abcecaac47e78db277ec881766b15
             steps{
                 sh "mvn test"
             }
         }
 
+<<<<<<< HEAD
          stage("Build"){
             steps{
                 sh " mvn clean install"
@@ -46,4 +51,24 @@ pipeline {
         emailext attachLog: true, body: 'Email sent out from Jenkins', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'ynareshbabu1992@gmail.com'
       }
     }
+=======
+        stage("Build"){
+            steps{
+                sh " mvn clean install"
+            }
+            post {
+                always {
+                    emailext attachLog: true,
+                    subject: "'${currentBuild.result}'",
+                    body: "Project: ${env.JOB_NAME}<br/>" +
+                    "Build Number: ${env.BUILD_NUMBER}<br/>" +
+                    "URL: ${env.BUILD_URL}<br/>",
+                    to: 'ynareshbabu1991@gmail.com',
+                    attachmentsPattern: 'trivy.txt'
+                }
+            }
+        }
+    }
+
+>>>>>>> 3360d519aa8abcecaac47e78db277ec881766b15
 }
